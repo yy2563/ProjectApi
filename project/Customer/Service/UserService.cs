@@ -4,11 +4,11 @@ using project.Models.Customer;
 
 namespace project.Customer.Servise
 {
-    public class UserService:IUserService
+    public class UserService : IUserService
 
     {
         private readonly IUserRepository _userRepository;
-        public UserService(IUserRepository userRepository) 
+        public UserService(IUserRepository userRepository)
         {
             _userRepository = userRepository;
         }
@@ -26,7 +26,7 @@ namespace project.Customer.Servise
                 UserName = register.UserName,
 
             };
-            var createdUser=await _userRepository.CreateUser(user);
+            var createdUser = await _userRepository.CreateUser(user);
             return MapToResponseDto(createdUser);
 
         }
@@ -34,7 +34,7 @@ namespace project.Customer.Servise
         {
             return new UserDto.registerDto
             {
-                Id=user.Id,
+                Id = user.Id,
                 Name = user.Name,
                 Email = user.Email,
                 Password = user.Password,
@@ -50,7 +50,7 @@ namespace project.Customer.Servise
             {
                 throw new ArgumentException("Invalid username or password.");
             }
-            return  new UserDto.loginDto
+            return new UserDto.loginDto
             {
                 UserName = user.UserName,
                 Password = user.Password
@@ -58,6 +58,9 @@ namespace project.Customer.Servise
 
 
         }
-
-    }
+        public async Task<IEnumerable<UserDto.getUserDto>> GetAllUsers() {
+            var allUsers = await _userRepository.GetAllUsers();
+            return (IEnumerable<UserDto.getUserDto>)allUsers;
+        } 
+   }
 }

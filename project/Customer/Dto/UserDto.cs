@@ -7,7 +7,6 @@ namespace project.Customer.Dto
     {
         public class registerDto
         {
-            [Key]public int Id { get; set; }
             [MaxLength(50),Required]
             public string? Name { get; set; }
             [EmailAddress]
@@ -29,6 +28,13 @@ namespace project.Customer.Dto
             public string? UserName { get; set; }
             [PasswordPropertyText, Required]
             public string? Password { get; set; } 
+        }
+        public class getUserDto
+        {
+            public string? Name { get; set; }
+            public string? Email { get; set; }
+            public string? UserName { get; set; }
+            public string? Phone { get; set; }
         }
     }
 }

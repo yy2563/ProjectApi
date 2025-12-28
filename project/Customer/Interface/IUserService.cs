@@ -6,6 +6,7 @@ namespace project.Customer.Interface
     {
         Task <UserDto.registerDto> CreateUser(UserDto.registerDto register);
         Task<UserDto.loginDto> LoginUser(UserDto.loginDto login);
+        Task<IEnumerable<UserDto.getUserDto>> GetAllUsers();
 
     }
 }

@@ -1,4 +1,6 @@
-﻿using project.Customer.Interface;
+﻿using Microsoft.EntityFrameworkCore;
+using project.Customer.Dto;
+using project.Customer.Interface;
 using project.Data;
 using project.Models.Customer;
 
@@ -23,9 +25,20 @@ namespace project.Customer.Repository
 
         public async Task<UserModel> GetByUserName(string UserName)
         {
-            
-            var user= await _context.UserModel.FindAsync(UserName);
+
+            var user = await _context.UserModel.FirstOrDefaultAsync(x => x.UserName == UserName);
             return user;
+
+        }
+        public async Task<IEnumerable<UserDto.getUserDto>> GetAllUsers()
+        {
+            return await _context.UserModel.Select(u => new UserDto.getUserDto
+            {
+                Name = u.Name,
+                Email = u.Email,
+                Phone = u.Phone,
+                UserName = u.UserName,
+            }).ToListAsync();
 
         }
     }

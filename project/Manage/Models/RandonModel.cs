@@ -9,7 +9,7 @@
         public int WinningPurchaseId { get; set; }
         public PurchasesModel WinningPurchase { get; set; } = null!;
 
-        public DateTime RaffleDate { get; set; }
+        public DateTime RaffleDate { get; set; }= DateTime.Now;
     }
 
 }
