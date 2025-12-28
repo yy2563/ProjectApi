@@ -1,0 +1,43 @@
+using Microsoft.EntityFrameworkCore;
+using project.Customer.Interface;
+using project.Customer.Repository;
+using project.Customer.Servise;
+using project.Data;
+
+
+var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container.
+
+builder.Services.AddControllers();
+// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+builder.Services.AddOpenApi();
+
+
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer("Server=Srv2\\pupils;DataBase=215861006_ChineseSale;Integrated Security=SSPI;Persist Security Info=False;TrustServerCertificate=True;"));
+//builder.Services.AddDbContext<ApplicationDbContext>(options =>
+//        options.UseSqlServer(builder.Configuration.("DefaultConnection")));
+
+//register service
+builder.Services.AddScoped<IUserService, UserService>();
+//register Reposutory
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+
+
+
+var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.MapOpenApi();
+}
+
+app.UseHttpsRedirection();
+
+app.UseAuthorization();
+
+app.MapControllers();
+
+app.Run();
