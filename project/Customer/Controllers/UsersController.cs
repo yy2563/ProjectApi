@@ -28,7 +28,7 @@ namespace project.Customer.Controllers
             try
             {
                 var user = await _userService.CreateUser(register);
-                return CreatedAtAction(nameof(Register), new { id = user.Id }, user);
+                return CreatedAtAction(nameof(Register), new { userName = user.UserName }, user);
             }
             catch (ArgumentException ex)
             {

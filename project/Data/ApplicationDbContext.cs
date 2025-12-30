@@ -17,6 +17,10 @@ namespace project.Data;
             public DbSet<DonorsModel> DonorsModel { get; set; }
             public DbSet<PurchasesModel> PurchasesModel { get; set; }
             public DbSet<RandonModel> RandonModel { get; set; }
+    public DbSet<Category> Category { get; set; }
+
+
+
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -49,7 +53,7 @@ namespace project.Data;
         modelBuilder.Entity<DonationsModel>(e =>
         {
             e.Property(e => e.Name).IsRequired();
-            e.Property(e => e.Category).IsRequired().HasMaxLength(20);
+            e.Property(e => e.Category).IsRequired().HasMaxLength(20).HasConversion<string>();
             //לבדוק אם עשינו נכון
             //e.Property(e => e.PriceTiket).IsRequired().HasColumnType("rang(10,100)");
           
@@ -61,15 +65,11 @@ namespace project.Data;
             e.Property(e => e.Email).IsRequired();
             e.Property(e => e.Phone).IsRequired().HasMaxLength(10);
         });
-       
+        modelBuilder.Entity<Category>(e =>
+        {
+            e.Property(e => e.Name).IsRequired();
+        });
 
     }
-
-
-
-
-
-
-
 }
  

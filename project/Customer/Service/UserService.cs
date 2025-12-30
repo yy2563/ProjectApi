@@ -34,7 +34,7 @@ namespace project.Customer.Servise
         {
             return new UserDto.registerDto
             {
-                Id = user.Id,
+                //Id = user.Id,
                 Name = user.Name,
                 Email = user.Email,
                 Password = user.Password,
@@ -45,7 +45,7 @@ namespace project.Customer.Servise
         }
         public async Task<UserDto.loginDto> LoginUser(UserDto.loginDto login)
         {
-            var user = await _userRepository.GetByUserName(login.UserName);
+            var user = await _userRepository.GetUserByUserName(login.UserName);
             if (user == null || user.Password != login.Password)
             {
                 throw new ArgumentException("Invalid username or password.");

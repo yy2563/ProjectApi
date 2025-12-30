@@ -6,7 +6,7 @@ namespace project.Customer.Interface
     public interface IUserRepository
     {
         Task<UserModel> CreateUser(UserModel user);
-        Task<UserModel> GetByUserName(string UserName);
+        Task<UserModel> GetUserByUserName(string UserName);
         Task <IEnumerable<UserDto.getUserDto>> GetAllUsers();
     }
 }

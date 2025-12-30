@@ -6,7 +6,7 @@ using project.Models.Customer;
 
 namespace project.Customer.Repository
 {
-    public class UserRepository:IUserRepository
+    public class UserRepository : IUserRepository
     {
         private readonly ApplicationDbContext _context;
 
@@ -23,7 +23,7 @@ namespace project.Customer.Repository
             return user;
         }
 
-        public async Task<UserModel> GetByUserName(string UserName)
+        public async Task<UserModel> GetUserByUserName(string UserName)
         {
 
             var user = await _context.UserModel.FirstOrDefaultAsync(x => x.UserName == UserName);
